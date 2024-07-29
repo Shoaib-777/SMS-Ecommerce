@@ -45,7 +45,7 @@ const Login = () => {
                     <FcGoogle className=" w-4 h-4 absolute top-3 left-[65px] cursor-pointer " />
                 </div>
                 <div className="mt-4">
-                    <h3 className="text-white font-bold text-[16px] text-center ">Don't have account <Link href={'/signup'}><span className="text-purple-700 cursor-pointer hover:underline decoration-[2px] "> Signup?</span></Link> </h3>
+                    <h3 className="text-white font-bold text-[16px] text-center ">Don&apos;t have account <Link href={'/signup'}><span className="text-purple-700 cursor-pointer hover:underline decoration-[2px] "> Signup?</span></Link> </h3>
                 </div>
                
             </div>
