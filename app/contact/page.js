@@ -7,7 +7,7 @@ const Contact = () => {
     <div className='bg-pink-400 py-4'>
       <div className='w-[calc(100%-40px)] lg:w-[calc(100%-30%)] m-auto h-auto shadow-xl border-t-4 border-l-2 border-r-2 border-black rounded-lg flex shadow-black  '>
         <div className='bg-white rounded-l-lg px-4 w-1/2'>
-          <h1 className='font-bold text-2xl mt-4 mb-2 text-pink-400 '>Let's Get In Touch</h1>
+          <h1 className='font-bold text-2xl mt-4 mb-2 text-pink-400 '>Let&apos;s Get In Touch</h1>
           <img src="https://blog.ahsuite.com/wp-content/uploads/2023/07/10-Tips-to-Build-a-Strong-Freelance-Portfolio.png" alt="no image found"  className=' rounded-full w-[350px] h-[350px] object-contain '/>
           <h4 className='font-bold text-xl '>Connect With Us</h4>
           <div className='flex py-4 items-center gap-3 flex-wrap'>
