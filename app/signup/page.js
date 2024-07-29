@@ -7,7 +7,9 @@ import { AddUserf } from "../utils/crud";
 import { toast } from "react-toastify";
 const signup = () => {
     const [show, setShow] = useState(false)
-    const handlegoogle = ()=> toast.error("Can't Login With Google")
+    const handlegoogle = ()=>{ 
+        toast.error("Can't Login With Google")
+    }
     return (
         <div className="background w-full h-full">
             <form action={AddUserf}>
