@@ -4,28 +4,26 @@ import { useDispatch, useSelector } from "react-redux";
 import { add, addw, removew, toggleLike } from "../lib/features/counter/counterSlice";
 import { toast, ToastContainer } from 'react-toastify';
 
-
 const AddToCartButton = ({ product }) => {
     const dispatch = useDispatch();
+    const like = useSelector((state) => state.counter.likes[product?.id] || false);
+
     if (!product || !product.id) {
-        return null
+        return null;
     }
-    const like = useSelector((state) => state.counter.likes[product.id] || false);
 
     const handleClick = () => {
         dispatch(add(product));
-        toast.success("Item Is Added To Cart")
+        toast.success("Item Is Added To Cart");
     };
 
     const handleClickWishlist = () => {
         if (like) {
             dispatch(removew(product.id));
-            toast.warn('Item Removed From Wishlist')
-            
+            toast.warn('Item Removed From Wishlist');
         } else {
             dispatch(addw(product));
-            toast.success('Added To Wishlist')
-
+            toast.success('Added To Wishlist');
         }
         dispatch(toggleLike(product.id));
     };
@@ -46,4 +44,3 @@ const AddToCartButton = ({ product }) => {
 };
 
 export default AddToCartButton;
-
