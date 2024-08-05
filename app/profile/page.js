@@ -1,8 +1,26 @@
- import { auth, signOut } from '../auth';
+import { auth, signOut } from '../auth';
 import Link from 'next/link';
 
 const Profile = async () => {
-    const { user } = await auth();
+    let user;
+    try {
+        const authResult = await auth();
+        user = authResult.user;
+    } catch (error) {
+        console.error('Error during authentication:', error);
+        return (
+            <div>
+                <h2 className='font-bold text-3xl text-center mt-4 mb-4'>
+                    An error occurred. Please try again later.
+                </h2>
+                <Link href={'/login'}>
+                    <h2 className='text-red-600 hover:underline cursor-pointer text-center font-bold text-3xl'>
+                        Login Here
+                    </h2>
+                </Link>
+            </div>
+        );
+    }
 
     if (!user) {
         return (
@@ -27,7 +45,11 @@ const Profile = async () => {
             <form
                 action={async () => {
                     "use server";
-                    await signOut();
+                    try {
+                        await signOut();
+                    } catch (error) {
+                        console.error('Error during sign out:', error);
+                    }
                 }}
             >
                 <button className='border border-black text-center'>
@@ -36,9 +58,10 @@ const Profile = async () => {
             </form>
         </div>
     );
-}
+};
 
 export default Profile;
+
 // import { auth, signOut } from '../auth';
 // import Link from 'next/link';
 
