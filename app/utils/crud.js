@@ -4,22 +4,40 @@ import { redirect } from "next/navigation";
 import ConnectDB from "../DB/ConnectDB";
 import Users from "../models/Users";
 import bcrypt from 'bcrypt'
+import { signIn } from "../auth";
 
 export const AddUserf = async (formData) => {
-    const { username, email,phone, password} = Object.fromEntries(formData);
-    try {
-        await ConnectDB();
+  const { username, email,phone, password} = Object.fromEntries(formData);
+  try {
+    await ConnectDB();
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password,salt)
         const newUser = new Users({
-            username, email, phone, password : hashedPassword,
+          username, email, phone, password : hashedPassword,
         })
         await newUser.save()
         console.log("user created succesfully ")
-    } catch (err) {
+      } catch (err) {
         console.log('failed to create user', err)
         throw new Error("failed to create user")
+      }
+      redirect('/')
     }
-    redirect('/')
-}
+    
+//next auth  
+    export const authenticate = async (prevState,formData) => {
+      const { email, password } = Object.fromEntries(formData);
+  
+      try {
+          await signIn('credentials', { email, password });
+      } catch (err) {
+          if (err.message.includes('CredentialsSignin')) {
+              return 'Wrong Credentials!';
+          }
+          if (!err.message.includes('CredentialsSignin')) {
+              return 'Login Successfully';
+          }
+          throw err;
+      }
+  }
 
