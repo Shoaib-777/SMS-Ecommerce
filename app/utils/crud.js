@@ -6,14 +6,14 @@ import Users from "../models/Users";
 import bcrypt from 'bcrypt'
 import { signIn } from "../auth";
 
-export const AddUserf = async (formData) => {
-  const { username, email,phone, password} = Object.fromEntries(formData);
+export const AddUserf = async (formData,profiles) => {
+  const { username, email,phone, password,} = Object.fromEntries(formData);
   try {
     await ConnectDB();
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password,salt)
         const newUser = new Users({
-          username, email, phone, password : hashedPassword,
+          username, email, phone, password : hashedPassword, img:profiles
         })
         await newUser.save()
         console.log("user created succesfully ")
@@ -21,7 +21,7 @@ export const AddUserf = async (formData) => {
         console.log('failed to create user', err)
         throw new Error("failed to create user")
       }
-      redirect('/')
+      redirect('/login')
     }
     
 //next auth  
