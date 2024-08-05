@@ -1,21 +1,41 @@
+import { auth, signOut } from '../auth';
 import Link from 'next/link';
-import React from 'react'
 
+const Profile = async () => {
+    const authResult = await auth();
+    const user = authResult?.user;
 
-const Profile = () => {
-  return (<>
-  <div>
-    <h2 className='text-5xl font-bold font-mono text-center'>User Profile</h2>
-    <div className=' container min-h-[85vh] lg:min-h-[60vh] mx-auto px-6 '>
-      <div className='mt-[8rem]'>
-
-      <h2 className='text-center font-semibold text-3xl mb-4'>NO Profile Found !</h2>
-      <h2 className='text-center font-semibold text-3xl '>Login <Link href={'/login'}><span className='text-red-600 hover:underline cursor-pointer'>Here</span></Link></h2>
-      </div>
-    </div>
-  </div>
-    </>
-  )
+    if (!user) {
+        return (
+          <div>
+          <h2 className='font-bold text-3xl text-center mt-4 mb-4'>
+            No Profile Found
+          </h2>
+          <Link href={'/login'}>
+              <h2 className='text-red-600 hover:underline cursor-pointer text-center font-bold text-3xl'>
+                 Login Here
+              </h2>
+            </Link>
+        </div>
+        );
+    }
+    return (
+        <>    
+            <div>
+                <div className='text-3xl font-bold'>
+                    {user.email}
+                </div>
+                <form action={async () => {
+                    "use server"
+                    await signOut();
+                }}>
+                    <button className='border border-black text-center'>
+                        Logout
+                    </button>
+                </form>
+            </div>
+        </>
+    );
 }
 
-export default Profile
+export default Profile;
