@@ -27,11 +27,9 @@ const Profile = async () => {
                     {user.email}
                 </div>
                 <form
-                    onSubmit={async (e) => {
-                        e.preventDefault();
-                        await signOut();
-                    }}
-                >
+                    action={async () => {
+                        "use server"
+                        await signOut();}}>
                     <button className='border border-black text-center'>
                         Logout
                     </button>
