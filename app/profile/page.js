@@ -45,7 +45,7 @@ const Profile = async () => {
             <div class="bg-white shadow-lg rounded-lg p-6 md:p-12 max-w-4xl w-full">
                 <div class="flex flex-col md:flex-row md:space-x-6">
                     <div class="flex flex-col items-center mb-6 md:mb-0">
-                        <img class="w-32 h-32 rounded-full object-cover border-4 border-blue-500" src="https://via.placeholder.com/150" alt="User Image"/>
+                        <img class="w-32 h-32 rounded-full object-cover border-4 border-blue-500" src={user.img} alt="User Image"/>
                         <h2 class="text-2xl font-bold text-gray-800 mt-4">{user.username}</h2>
                         <p class="text-gray-600">{user.email}</p>
                     </div>
