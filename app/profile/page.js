@@ -11,7 +11,7 @@ const Profile = async () => {
         return (
             <div>
                 <h2 className='font-bold text-3xl text-center mt-4 mb-4'>
-                    An error occurred. Please try again later.
+                 Please Login First and try again.
                 </h2>
                 <Link href={'/login'}>
                     <h2 className='text-red-600 hover:underline cursor-pointer text-center font-bold text-3xl'>
@@ -44,14 +44,8 @@ const Profile = async () => {
             </div>
             <form
                 action={async () => {
-                    "use server";
-                    try {
-                        await signOut();
-                    } catch (error) {
-                        console.error('Error during sign out:', error);
-                    }
-                }}
-            >
+                        "use server"
+                        await signOut();}}>
                 <button className='border border-black text-center'>
                     Logout
                 </button>
